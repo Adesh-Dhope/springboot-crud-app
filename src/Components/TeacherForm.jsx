@@ -169,54 +169,76 @@ const TeacherForm = () => {
             </div>
 
             <div className="w-full border border-gray-300 rounded mt-2">
+                <div className="flex font-semibold bg-gray-100 border-b border-gray-300 text-sm sm:text-base">
+                    <div className="w-12 sm:w-16 border-r border-gray-300 p-2">#</div>
 
-                {/* Header */}
-                <div className="flex font-semibold bg-gray-100 border-b border-gray-300">
-                    <div className="w-16 border-r border-gray-300 p-1">Sr.No</div>
-                    <div className="w-96 border-r border-gray-300 p-1">Teacher Name</div>
-                    <div className="w-44 border-r border-gray-300 p-1">Salary</div>
-                    <div className="w-32 border-r border-gray-300 p-1">Gender</div>
-                    <div className="w-40 border-r border-gray-300 p-1">Subject</div>
-                    <div className="w-32 border-r border-gray-300 p-1">Class</div>
+                    <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                        Teacher Name
+                </div>
+                    <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                        Salary
+                    </div>
+                    <div className="w-24 sm:w-32 border-r border-gray-300 p-2 break-words">
+                        Gender
+                    </div>
+                    <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                        Subject
+                    </div>
 
-                    <div className="w-20 p-1">Delete</div>
+                    <div className="w-24 sm:w-32 border-r border-gray-300 p-2 break-words">
+                        Class
+                    </div>
+
+                    <div className="w-20 p-2">Delete</div>
                 </div>
 
-                {/* Scrollable Content */}
                 <div className="max-h-96 overflow-y-auto">
                     {[...teacherList]?.reverse().map((teacher, index) => (
-                        <div
-                            key={index}
-                            className="flex border-b border-gray-300"
-                        >
-                            <div className="w-16 border-r border-gray-300 p-1">{index + 1}</div>
-                            <div className="w-96 border-r border-gray-300 p-1">{teacher.teacherName}</div>
-                            <div className="w-44 border-r border-gray-300 p-1">{teacher.teacherSalary}</div>
-                            <div className="w-32 border-r border-gray-300 p-1">{teacher.teacherGender || ""}</div>
-                            <div className="w-40 border-r border-gray-300 p-1">{teacher.teacherSubject}</div>
-                            <div className="w-32 border-r border-gray-300 p-1">{teacher.teacherClass || ""}</div>
-                            <div>
-                                {isLoading === "delete" && clickedIndex === index ?
-                                    <>
-                                        <SpinnerLoader />
-                                    </> :
+                        <div key={index} className="flex border-b border-gray-300 text-sm sm:text-base">
+
+                            <div className="w-12 sm:w-16 border-r border-gray-300 p-2">
+                                {index + 1}
+                            </div>
+
+                            <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                                {teacher.teacherName}
+                            </div>
+
+                            <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                                {teacher.teacherSalary}
+                            </div>
+
+                            <div className="w-24 sm:w-32 border-r border-gray-300 p-2 break-words">
+                                {teacher.teacherGender || ""}
+                            </div>
+
+                            <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                                {teacher.teacherSubject}
+                            </div>
+
+                            <div className="w-24 sm:w-32 border-r border-gray-300 p-2 break-words">
+                                {teacher.teacherClass || ""}
+                            </div>
+
+                            <div className="w-20 p-2 text-red-600">
+                                {isLoading === "delete" && clickedIndex === index ? (
+                                    <SpinnerLoader />
+                                ) : (
                                     <div
                                         onClick={() => {
                                             handleDelete(teacher?.id);
-                                            setClickedIndex(index)
-
+                                            setClickedIndex(index);
                                         }}
-                                        className="w-20 p-1 text-red-600 cursor-pointer hover:underline"
+                                        className="cursor-pointer hover:underline"
                                     >
-
                                         Delete
                                     </div>
-                                }
+                                )}
                             </div>
+
                         </div>
                     ))}
                 </div>
-
             </div>
         </div>
 

@@ -108,44 +108,62 @@ const Notes = () => {
 
             <div className="w-full border border-gray-300 rounded">
 
-                <div className="flex font-semibold bg-gray-100 border-b border-gray-300">
-                    <div className="w-16 border-r border-gray-300 p-1">Sr. No</div>
-                    <div className="w-72 border-r border-gray-300 p-1">Topic Name</div>
-                    <div className="w-[750px] border-r border-gray-300 p-1">Topic Explanation</div>
-                    <div className="w-20 p-1">Delete</div>
+                {/* Header */}
+                <div className="flex font-semibold bg-gray-100 border-b border-gray-300 text-sm sm:text-base">
+
+                    <div className="w-12 sm:w-16 border-r border-gray-300 p-2">
+                        #
+                    </div>
+
+                    <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                        Topic Name
+                    </div>
+
+                    <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                        Topic Explanation
+                    </div>
+
+                    <div className="w-20 p-2">
+                        Delete
+                    </div>
                 </div>
 
+                {/* Scrollable Rows */}
                 <div className="max-h-96 overflow-y-auto">
                     {[...notesList]?.reverse().map((note, index) => (
-                        <div
-                            key={index}
-                            className="flex border-b border-gray-300"
-                        >
-                            <div className="w-16 border-r border-gray-300 p-1">{index + 1}</div>
-                            <div className="w-72 border-r border-gray-300 p-1">{note.topic}</div>
-                            <div className="w-[750px] border-r border-gray-300 p-1">{note.explanation || ""}</div>
-                            <div>
-                                {isLoading === "delete" && clickedIndex === index ?
-                                    <>
-                                        <SpinnerLoader />
-                                    </> :
+                        <div key={index} className="flex border-b border-gray-300 text-sm sm:text-base">
+
+                            <div className="w-12 sm:w-16 border-r border-gray-300 p-2">
+                                {index + 1}
+                            </div>
+
+                            <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                                {note.topic}
+                            </div>
+
+                            <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                                {note.explanation || ""}
+                            </div>
+
+                            <div className="w-20 p-2">
+                                {isLoading === "delete" && clickedIndex === index ? (
+                                    <SpinnerLoader />
+                                ) : (
                                     <div
                                         onClick={() => {
                                             handleDelete(note?.id);
-                                            setClickedIndex(index)
-
+                                            setClickedIndex(index);
                                         }}
-                                        className="w-20 p-1 text-red-600 cursor-pointer hover:underline"
+                                        className="cursor-pointer text-red-600 hover:underline"
                                     >
-
                                         Delete
                                     </div>
-                                }
+                                )}
                             </div>
+
                         </div>
                     ))}
                 </div>
-
             </div>
         </div>
     )

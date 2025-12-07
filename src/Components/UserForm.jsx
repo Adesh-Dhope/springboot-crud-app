@@ -137,45 +137,53 @@ export default function UserForm() {
             <div>
                 <div className="w-full border border-gray-300 rounded mt-2">
 
-                    {/* Header */}
-                    <div className="flex font-semibold bg-gray-100 border-b border-gray-300">
-                        <div className="w-16 border-r border-gray-300 p-1">Sr.No</div>
-                        <div className="w-44 border-r border-gray-300 p-1">Name</div>
-                        <div className="w-28 border-r border-gray-300 p-1">Age</div>
-                        <div className="w-32 border-r border-gray-300 p-1">Salary</div>
-                        <div className="w-96 border-r border-gray-300 p-1">Notes</div>
-                        <div className="w-20 p-1">Delete</div>
+                    <div className="flex font-semibold bg-gray-100 border-b border-gray-300 text-sm sm:text-base">
+                        <div className="w-16 border-r border-gray-300 p-2">#</div>
+                        <div className="flex-1 min-w-0 border-r border-gray-300 p-2">Name</div>
+                        <div className="w-24 sm:w-28 border-r border-gray-300 p-2">Age</div>
+                        <div className="w-28 sm:w-32 border-r border-gray-300 p-2">Salary</div>
+                        <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                            Notes
+                        </div>
+                        <div className="w-20 p-2">Delete</div>
                     </div>
 
-                    {/* Scrollable Content */}
                     <div className="max-h-96 overflow-y-auto">
                         {[...userList]?.reverse().map((user, index) => (
-                            <div
-                                key={index}
-                                className="flex border-b border-gray-300"
-                            >
-                                <div className="w-16 border-r border-gray-300 p-1">{index + 1}</div>
-                                <div className="w-44 border-r border-gray-300 p-1">{user.name}</div>
-                                <div className="w-28 border-r border-gray-300 p-1">{user.age}</div>
-                                <div className="w-32 border-r border-gray-300 p-1">{user.salary || ""}</div>
-                                <div className="w-96 border-r border-gray-300 p-1">{user.notes}</div>
+                            <div key={index} className="flex border-b border-gray-300 text-sm sm:text-base">
+
+                                <div className="w-16 border-r border-gray-300 p-2">
+                                    {index + 1}
+                                </div>
+
+                                <div className="flex-1 min-w-0 border-r border-gray-300 p-2 break-words">
+                                    {user.name}
+                                </div>
+
+                                <div className="w-24 sm:w-28 border-r border-gray-300 p-2">
+                                    {user.age}
+                                </div>
+
+                                <div className="w-28 sm:w-32 border-r border-gray-300 p-2">
+                                    {user.salary || ""}
+                                </div>
+
+                                <div className="flex-[2] min-w-0 border-r border-gray-300 p-2 break-words">
+                                    {user.notes}
+                                </div>
 
                                 <div
                                     onClick={() => handleDelete(user?.id)}
-                                    className="w-20 p-1 text-red-600 cursor-pointer hover:underline"
+                                    className="w-20 p-2 text-red-600 cursor-pointer hover:underline"
                                 >
                                     Delete
                                 </div>
+
                             </div>
                         ))}
                     </div>
-
                 </div>
-
-
             </div>
-
-
         </div>
     );
 }
