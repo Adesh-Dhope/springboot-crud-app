@@ -45,7 +45,7 @@ const TeacherForm = () => {
         }
         const payload = {
             teacherName: teacherName,
-            teacherSalary: email,
+            teacherEmail: email,
             teacherGender: teacherId,
             teacherSubject: subject,
             teacherClass: teacherClass,
@@ -96,13 +96,13 @@ const TeacherForm = () => {
 
                 {/* Email */}
                 <div>
-                    <label className="block text-sm font-medium mb-1">salary</label>
+                    <label className="block text-sm font-medium mb-1">Email</label>
                     <input
-                        type="number"
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full border rounded-md px-2 py-1 outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="Enter salary"
+                        placeholder="Enter email"
                     />
                 </div>
 
@@ -189,7 +189,7 @@ const TeacherForm = () => {
                         >
                             <div className="w-16 border-r border-gray-300 p-1">{index + 1}</div>
                             <div className="w-96 border-r border-gray-300 p-1">{teacher.teacherName}</div>
-                            <div className="w-44 border-r border-gray-300 p-1">{teacher.teacherSalary}</div>
+                            <div className="w-44 border-r border-gray-300 p-1 break-all whitespace-normal truncate">{teacher.teacherEmail}</div>
                             <div className="w-32 border-r border-gray-300 p-1">{teacher.teacherGender || ""}</div>
                             <div className="w-40 border-r border-gray-300 p-1">{teacher.teacherSubject}</div>
                             <div className="w-32 border-r border-gray-300 p-1">{teacher.teacherClass || ""}</div>
